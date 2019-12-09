@@ -7,6 +7,9 @@ include_directories(intcode)
 
 add_library(intcode intcode/intcode.cpp intcode/intcode.h)
 
+add_executable(day03a day03/day03a.cpp)
+add_executable(day03b day03/day03b.cpp)
+
 add_executable(day04a day04/day04a.cpp)
 add_executable(day04b day04/day04b.cpp)
 
