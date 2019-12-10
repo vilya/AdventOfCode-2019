@@ -8,10 +8,7 @@
 
 int gcd(int x, int y)
 {
-  if (y == 0) {
-    return x;
-  }
-  return gcd(y, x % y);
+  return (y == 0) ? x : gcd(y, x % y);
 }
 
 
@@ -118,7 +115,7 @@ int main(int argc, char** argv)
 
   const size_t n = asteroids.size() - 1;
   size_t bestI = best_asteroid(asteroids);
-  printf("base is at {%d,%d}\n", asteroids[bestI].x, asteroids[bestI].y);
+  printf("base is at {%d,%d} (asteroid %u)\n", asteroids[bestI].x, asteroids[bestI].y, uint32_t(bestI));
 
   std::vector<ivec2> directions;
   directions.reserve(n);
