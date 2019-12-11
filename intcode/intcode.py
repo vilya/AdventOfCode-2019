@@ -11,6 +11,7 @@ def load(path):
 def run(mem):
   ip = 0
   rel = 0
+  out = []
 
   def loc(i):
     mode = (mem[ip] / (10 ** (i+1))) % 10
@@ -28,10 +29,11 @@ def run(mem):
       mem[loc(3)] = mem[loc(1)] * mem[loc(2)]
       ip += 4
     elif op == 3: # read
-      mem[loc(1)] = (yield (1,0))
+      mem[loc(1)] = (yield out)
+      out = []
       ip += 2
     elif op == 4: # write
-      yield (2, mem[loc(1)])
+      out.append(mem[loc(1)])
       ip += 2
     elif op == 5: # jump if true
       ip = mem[loc(2)] if mem[loc(1)] != 0 else (ip + 3)
@@ -47,4 +49,6 @@ def run(mem):
       rel += mem[loc(1)]
       ip += 2
     else:
+      if out != []:
+        yield out
       return
