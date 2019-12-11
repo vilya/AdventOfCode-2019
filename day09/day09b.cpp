@@ -18,7 +18,7 @@ int main(int argc, char** argv)
   while (src.run(2)) {
     printf("%lld,", src.out[0]);
   }
-  printf("\n");
+  printf("%lld\n", src.out[0]);
 
   return EXIT_SUCCESS;
 }
