@@ -1,8 +1,6 @@
-#include <intcode.h>
+#include <tiny-intcode.h>
 
 #include <cstdio>
-#include <vector>
-#include <queue>
 
 int main(int argc, char** argv)
 {
@@ -11,14 +9,9 @@ int main(int argc, char** argv)
     fprintf(stderr, "Failed to load %s\n", argv[1]);
     return 1;
   }
-
   prog.mem[1] = 12;
   prog.mem[2] = 2;
-
-  std::queue<int64_t> input;
-  std::vector<int64_t> output;
-  prog.run(input, output);
-
+  prog.run(0);
   printf("Value is %lld\n", prog.mem[0]);
   return 0;
 }

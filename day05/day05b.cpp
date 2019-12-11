@@ -1,10 +1,7 @@
-#include <intcode.h>
+#include <tiny-intcode.h>
 
 #include <cstdio>
 #include <cstdlib>
-#include <queue>
-#include <vector>
-
 
 int main(int argc, char** argv)
 {
@@ -19,17 +16,12 @@ int main(int argc, char** argv)
     return EXIT_FAILURE;
   }
 
-  std::queue<int64_t> input;
-  input.push(5);
-
-  std::vector<int64_t> output;
-  prog.run(input, output);
-
-  bool passed = !output.empty();
-  int64_t diagnostic = output.back();
-  output.pop_back();
+  prog.run(5);
+  bool passed = !prog.out.empty();
+  int64_t diagnostic = prog.out.back();
+  prog.out.pop_back();
   printf("test results:");
-  for (int64_t x : output) {
+  for (int64_t x : prog.out) {
     if (x != 0) {
       passed = false;
     }
