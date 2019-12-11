@@ -48,3 +48,6 @@ target_link_libraries(day09b intcode)
 
 add_executable(day10a day10/day10a.cpp)
 add_executable(day10b day10/day10b.cpp)
+
+add_executable(day11a day11/day11a.cpp)
+add_executable(day11b day11/day11b.cpp)
