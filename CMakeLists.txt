@@ -5,49 +5,25 @@ set(CMAKE_CXX_STANDARD 14)
 
 include_directories(intcode)
 
-add_library(intcode intcode/intcode.cpp intcode/intcode.h)
-
 add_executable(day01a day01/day01a.cpp)
 add_executable(day01b day01/day01b.cpp)
-
 add_executable(day02a day02/day02a.cpp)
-target_link_libraries(day02a intcode)
-
 add_executable(day02b day02/day02b.cpp)
-target_link_libraries(day02b intcode)
-
 add_executable(day03a day03/day03a.cpp)
 add_executable(day03b day03/day03b.cpp)
-
 add_executable(day04a day04/day04a.cpp)
 add_executable(day04b day04/day04b.cpp)
-
 add_executable(day05a day05/day05a.cpp)
-target_link_libraries(day05a intcode)
-
 add_executable(day05b day05/day05b.cpp)
-target_link_libraries(day05b intcode)
-
 add_executable(day06a day06/day06a.cpp)
 add_executable(day06b day06/day06b.cpp)
-
 add_executable(day07a day07/day07a.cpp)
-target_link_libraries(day07a intcode)
-
 add_executable(day07b day07/day07b.cpp)
-target_link_libraries(day07b intcode)
-
 add_executable(day08a day08/day08a.cpp)
 add_executable(day08b day08/day08b.cpp)
-
 add_executable(day09a day09/day09a.cpp)
-target_link_libraries(day09a intcode)
-
 add_executable(day09b day09/day09b.cpp)
-target_link_libraries(day09b intcode)
-
 add_executable(day10a day10/day10a.cpp)
 add_executable(day10b day10/day10b.cpp)
-
 add_executable(day11a day11/day11a.cpp)
 add_executable(day11b day11/day11b.cpp)
