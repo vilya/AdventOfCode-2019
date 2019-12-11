@@ -1,9 +1,8 @@
-#include <intcode.h>
+// #include <intcode.h>
+#include <tiny-intcode.h>
 
 #include <cstdio>
 #include <cstdlib>
-#include <queue>
-#include <vector>
 
 int main(int argc, char** argv)
 {
@@ -17,16 +16,15 @@ int main(int argc, char** argv)
     fprintf(stderr, "Couldn't open %s\n", argv[1]);
     return EXIT_FAILURE;
   }
-
-  std::queue<int64_t> input;
-  input.push(1);
-  std::vector<int64_t> output;
-  src.init();
-  src.run(input, output);
-
-  for (int64_t x : output) {
-    printf("%lld,", x);
+  int64_t output = 0;
+  int result = 1;
+  while (result != 0) {
+    result = src.run(1, output);
+    if (result == 2) {
+      printf("%lld,", output);
+    }
   }
   printf("\n");
+
   return EXIT_SUCCESS;
 }
