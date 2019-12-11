@@ -16,13 +16,8 @@ int main(int argc, char** argv)
     fprintf(stderr, "Couldn't open %s\n", argv[1]);
     return EXIT_FAILURE;
   }
-  int64_t output = 0;
-  int result = 1;
-  while (result != 0) {
-    result = src.run(1, output);
-    if (result == 2) {
-      printf("%lld,", output);
-    }
+  while (src.run(1) != 0) {
+    printf("%lld,", src.out[0]);
   }
   printf("\n");
 

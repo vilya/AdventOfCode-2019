@@ -7,6 +7,7 @@ namespace vh {
 
   struct IntcodeComputer {
     std::vector<int64_t> mem;
+    std::vector<int64_t> out;
     int64_t ip = 0, rel = 0;
 
     bool load(const char* filename) {
@@ -19,6 +20,7 @@ namespace vh {
       fclose(f);
       if (mem.size() < 128 * 1024)
         mem.resize(128 * 1024, 0ll);
+      out.reserve(16);
       return true;
     }
 
@@ -27,16 +29,17 @@ namespace vh {
       return mem[((mode == 1) ? (ip + i) : mem[ip + i]) + ((mode == 2) ? rel : 0)]; 
     }
 
-    // return value: 0 = halted, 1 = need input, 2 = output ready
-    int run(int64_t input, int64_t& output) {
+    // return value: 0 = halted, 1 = need input
+    int run(int64_t input) {
       bool has_in = true;
+      out.clear();
       while (1) {
         int64_t op = mem[ip];
         switch (op % 100) {
           case 1: loc(3) = loc(1) + loc(2); ip += 4; break; // add
           case 2: loc(3) = loc(1) * loc(2); ip += 4; break; // mul
           case 3: if (!has_in) return 1; loc(1) = input; has_in = false; ip += 2; break; // read
-          case 4: output = loc(1); ip += 2; return 2; // write
+          case 4: out.push_back(loc(1)); ip += 2; break; // write
           case 5: ip = (loc(1) != 0) ? loc(2) : (ip + 3); break; // jump if true
           case 6: ip = (loc(1) == 0) ? loc(2) : (ip + 3); break; // jump if false
           case 7: loc(3) = (loc(1) <  loc(2)) ? 1 : 0; ip += 4; break; // less than

@@ -36,11 +36,12 @@ int main(int argc, char** argv)
 #if TINY_INTCODE
     int64_t status, amount = 0;
     for (size_t i = 0; i < 5; i++) {
-      status = prog[i].run(perm[i], amount);
+      prog[i].run(perm[i]);
     }
     do {
       for (size_t i = 0; i < 5; i++) {
-        status = prog[i].run(amount, amount);
+        status = prog[i].run(amount);
+        amount = prog[i].out[0];
       }
     } while (status != 0);
 #else

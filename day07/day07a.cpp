@@ -32,12 +32,13 @@ int main(int argc, char** argv)
 //    printf("perm = { %d, %d, %d, %d, %d }\n", perm[0], perm[1], perm[2], perm[3], perm[4]);
 
 #if TINY_INTCODE
-    int64_t output = 0, tmp;
+    int64_t output = 0;
     for (int phase : perm) {
 //      printf("  phase = %d, input = %lld --> ", phase, output);
       vh::IntcodeComputer prog = src;
-      prog.run(phase, tmp);
-      prog.run(output, output);
+      prog.run(phase);
+      prog.run(output);
+      output = prog.out[0];
 //      printf("output = %lld\n", output);
     }
     if (output > maxOutput) {

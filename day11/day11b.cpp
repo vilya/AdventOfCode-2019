@@ -61,22 +61,15 @@ int main(int argc, char** argv)
 
   grid[pos] = kWhite;
 
-  int64_t output = 0;
   int result = 1;
   while (true) {
     int64_t input = (grid.count(pos) > 0) ? grid[pos] : kBlack;
-    result = src.run(input, output);
+    result = src.run(input);
     if (result == 0) {
       break;
     }
-    assert(result == 2);
-    grid[pos] = output;
-    result = src.run(input, output);
-    if (result == 0) {
-      break;
-    }
-    assert(result == 2);
-    if (output == kTurnLeft) {
+    grid[pos] = src.out[0];
+    if (src.out[1] == kTurnLeft) {
       facing = ivec2{ facing.y, -facing.x };
     }
     else {
