@@ -5,7 +5,6 @@ namespace vh {
   
   static constexpr int64_t kModeDiv[] = { 10, 100, 1000, 10000 };
 
-
   struct IntcodeComputer {
     std::vector<int64_t> mem;
     int64_t ip = 0, rel = 0;
@@ -18,6 +17,8 @@ namespace vh {
       while (fscanf(f, "%lld,", &tmp) == 1)
         mem.push_back(tmp);
       fclose(f);
+      if (mem.size() < 128 * 1024)
+        mem.resize(128 * 1024, 0ll);
       return true;
     }
 
@@ -28,7 +29,7 @@ namespace vh {
 
     // return value: 0 = halted, 1 = need input, 2 = output ready
     int run(int64_t input, int64_t& output) {
-      bool has_in = true, has_out = true;
+      bool has_in = true;
       while (1) {
         int64_t op = mem[ip];
         switch (op % 100) {
