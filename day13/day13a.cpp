@@ -11,12 +11,16 @@ bool operator == (ivec2 a, ivec2 b) { return a.x == b.x && a.y == b.y; }
 bool operator <  (ivec2 a, ivec2 b) { return (a.x != b.x) ? (a.x < b.x) : (a.y < b.y); }
 
 
-void process_output(const vh::IntcodeComputer& src, std::map<ivec2, int64_t>& display)
+void update(const vh::IntcodeComputer& src, std::map<ivec2, int64_t>& display)
 {
   for (size_t i = 0, endI = src.out.size(); i < endI; i += 3) {
     ivec2 pos{ src.out[i], src.out[i+1] };
-    printf("tile %lld, %lld = %lld\n", src.out[i], src.out[i+1], src.out[i+1]);
-    display[pos] = src.out[i+2];
+    if (src.out[i+2] == 2) {// 2 == a block
+      display[pos] = src.out[i+2];
+    }
+    else if (src.out[i+2] == 4) { // 4 == the ball
+      display.erase(pos);
+    }
   }
 }
 
@@ -35,18 +39,11 @@ int main(int argc, char** argv)
   }
 
   std::map<ivec2, int64_t> display;
-  while (src.run(1)) {
-    process_output(src, display);
+  while (src.run(0)) {
+    update(src, display);
   }
-  process_output(src, display);
+  update(src, display);
 
-  uint32_t count = 0;
-  for (auto it : display) {
-    if (it.second == 2) {
-      ++count;
-    }
-  }
-  printf("Num blocks = %u\n", count);
-//  printf("Num blocks = %u\n", uint32_t(display.size()));
+  printf("Num blocks = %u\n", uint32_t(display.size()));
   return EXIT_SUCCESS;
 }
