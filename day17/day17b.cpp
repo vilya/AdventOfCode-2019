@@ -7,8 +7,6 @@
 #include <vector>
 
 
-// This is a copy 'n' paste of day15b for now.
-
 struct ivec2 {
   int64_t x, y;
 
