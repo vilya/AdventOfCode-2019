@@ -14,7 +14,7 @@ int main(int argc, char** argv)
       vh::IntcodeComputer prog = src;
       prog.mem[1] = noun;
       prog.mem[2] = verb;
-      prog.run(0);
+      prog.run();
       if (prog.mem[0] == 19690720) {
         printf("noun = %lld, verb = %lld, answer = %lld\n", noun, verb, noun * 100 + verb);
         return 0;

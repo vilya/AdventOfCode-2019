@@ -1,4 +1,5 @@
 #include <cstdio>
+#include <queue>
 #include <vector>
 
 namespace vh {
@@ -30,15 +31,14 @@ namespace vh {
     }
 
     // return value: 0 = halted, 1 = need input
-    int run(int64_t input) {
-      bool has_in = true;
+    int run(std::deque<int64_t>& input) {
       out.clear();
       while (1) {
         int64_t op = mem[ip];
         switch (op % 100) {
           case 1: loc(3) = loc(1) + loc(2); ip += 4; break; // add
           case 2: loc(3) = loc(1) * loc(2); ip += 4; break; // mul
-          case 3: if (!has_in) return 1; loc(1) = input; has_in = false; ip += 2; break; // read
+          case 3: if (input.empty()) return 1; loc(1) = input.front(); input.pop_front(); ip += 2; break; // read
           case 4: out.push_back(loc(1)); ip += 2; break; // write
           case 5: ip = (loc(1) != 0) ? loc(2) : (ip + 3); break; // jump if true
           case 6: ip = (loc(1) == 0) ? loc(2) : (ip + 3); break; // jump if false
@@ -48,6 +48,24 @@ namespace vh {
           default: return 0;
         }
       }
+    }
+
+    int run(int64_t val) {
+      std::deque<int64_t> input{ val };
+      return run(input);
+    }
+
+    int run() {
+      std::deque<int64_t> input;
+      return run(input);
+    }
+
+    int run(const char* str) {
+      std::deque<int64_t> input;
+      for (int i = 0; str[i] != '\0'; i++) {
+        input.push_back(str[i]);
+      }
+      return run(input);
     }
   };
 

@@ -11,7 +11,7 @@ int main(int argc, char** argv)
   }
   prog.mem[1] = 12;
   prog.mem[2] = 2;
-  prog.run(0);
+  prog.run();
   printf("Value is %lld\n", prog.mem[0]);
   return 0;
 }

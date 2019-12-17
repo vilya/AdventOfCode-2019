@@ -39,7 +39,7 @@ int main(int argc, char** argv)
   }
 
   std::map<ivec2, int64_t> display;
-  while (src.run(0)) {
+  while (src.run()) {
     update(src, display);
   }
   update(src, display);
