@@ -12,35 +12,45 @@ bool load(const char* filename, std::vector<int64_t>& out)
   if (!f) {
     return false;
   }
+
   int64_t tmp;
+  size_t offset = 0;
+  for (int i = 0; i < 7; i++) {
+    tmp = fgetc(f);
+    if (tmp == EOF) {
+      return false;
+    }
+    tmp -= '0';
+    offset = offset * 10 + tmp;
+  }
+  fseek(f, 0, SEEK_SET);
+
   while ((tmp = fgetc(f)) != EOF) {
     out.push_back(tmp - '0');
   }
   fclose(f);
 
-  const size_t originalSize = out.size();
-  out.resize(out.size() * kRepeat);
-  for (size_t i = 1; i < kRepeat; i++) {
-    std::memcpy(out.data() + i * originalSize, out.data(), originalSize * sizeof(int64_t));
+  const size_t n = out.size();
+  const size_t repeats = kRepeat - offset / n;
+
+  out.resize(n * repeats);
+  for (size_t i = 1; i < repeats; i++) {
+    std::memcpy(out.data() + i * n, out.data(), n * sizeof(int64_t));
   }
+  out.erase(out.begin(), out.begin() + offset % n);
 
   return true;
 }
 
 
-void apply_pattern(const std::vector<int64_t>& in, std::vector<int64_t>& out, size_t offset)
+void apply_pattern(const std::vector<int64_t>& in, std::vector<int64_t>& out)
 {
   const size_t n = in.size();
   assert(out.size() == n);
-  assert(offset * 2 > n);
-
   int64_t sum = 0;
-  for (size_t i = offset - 1; i < n; i++) {
+  for (int64_t i = n - 1; i >= 0; --i) {
     sum += in[i];
-  }
-  for (size_t i = offset - 1; i < n; i++) {
     out[i] = sum % 10;
-    sum -= in[i];
   }
 }
 
