@@ -30,21 +30,20 @@ int main(int argc, char** argv)
 
   prog.run(0ll); // Prints the 'Input Instruction' prompt
   prog.run(
-      "NOT T T\n"
-      "AND A T\n"
-      "AND B T\n"
-      "AND C T\n"
-      // T == A and B and C, i.e. true if the next 3 tiles are ground, false if any of them are empty
+      "OR A J\n"
+      "AND B J\n"
+      "AND C J\n"
+      // J == A and B and C, i.e. true if the next 3 tiles are ground, false if any of them are empty
 
-      "NOT T T\n"
+      "NOT J J\n"
       // T now indicates whether we should jump.
 
-      "AND D T\n"
+      "AND D J\n"
       // Must not jump now if D is empty.
 
-      "OR E J\n"
-      "OR H J\n"
-      // J is false if we would have to jump again immediately after landing at D and that second jump would land on empty space
+      "OR E T\n"
+      "OR H T\n"
+      // T is false if we would have to jump again immediately after landing at D and that second jump would land on empty space
 
       "AND T J\n"
       // Bring them both together.
