@@ -3,23 +3,10 @@
 #include <cstdint>
 #include <cstring>
 
-
 constexpr int kWidth = 5;
 constexpr int kHeight = 5;
-constexpr int kMaxDepth = 1000;
+constexpr int kMaxDepth = 201;
 constexpr int kNumLevels = kMaxDepth * 2 + 1;
-
-constexpr int kDelta[4][2] = {
-  { -1,  0 },
-  {  1,  0 },
-  {  0, -1 },
-  {  0,  1 },
-};
-
-constexpr int kLeft  = 0;
-constexpr int kRight = 1;
-constexpr int kUp    = 2;
-constexpr int kDown  = 3;
 
 
 struct Grid {
@@ -33,83 +20,25 @@ struct Grid {
   }
 
 
-  int num_bugs(int x, int y, int level) const {
-    assert(level >= 0 && level < kNumLevels);
-    assert(x >= 0 && x < kWidth && y >= 0 && y < kHeight);
-    assert(!(x == 2 && y == 2));
-
-    uint32_t bit = 1u << (y * kWidth + x);
-    return (vals[level] & bit) ? 1 : 0;
+  Grid(const Grid& other) {
+    std::memcpy(vals, other.vals, sizeof(vals));
+    activeLo = other.activeLo;
+    activeHi = other.activeHi;
   }
 
 
-  int adjacent_bugs(int x, int y, int level) const {
-    assert(level >= 0 && level < kNumLevels);
-    assert(x >= 0 && x < kWidth && y >= 0 && y < kHeight);
-    assert(!(x == 2 && y == 2));
-
-    int bugs = 0;
-    for (int direction = kLeft; direction <= kDown; direction++) {
-      int ax = x + kDelta[direction][0];
-      int ay = y + kDelta[direction][1];
-
-      if (ax == 2 && ay == 2) {
-        switch (direction) {
-        case kLeft:
-          for (int i = 0; i < kHeight; i++) {
-            bugs += num_bugs(kWidth - 1, i, level + 1);
-          }
-          break;
-        case kRight:
-          for (int i = 0; i < kHeight; i++) {
-            bugs += num_bugs(0, i, level + 1);
-          }
-          break;
-        case kUp:
-          for (int i = 0; i < kHeight; i++) {
-            bugs += num_bugs(i, kHeight - 1, level + 1);
-          }
-          break;
-        case kDown:
-          for (int i = 0; i < kHeight; i++) {
-            bugs += num_bugs(i, 0, level + 1);
-          }
-          break;
-        default:
-          break;
-        }
-      }
-      else if (ax == -1) {
-        bugs += num_bugs(1, 2, level - 1);
-      }
-      else if (ax == kWidth) {
-        bugs += num_bugs(3, 2, level - 1);
-      }
-      else if (ay == -1) {
-        bugs += num_bugs(2, 1, level - 1);
-      }
-      else if (ay == kHeight) {
-        bugs += num_bugs(2, 3, level - 1);
-      }
-      else {
-        bugs += num_bugs(ax, ay, level);
-      }
-    }
-    return bugs;
+  Grid& operator = (const Grid& other) {
+    std::memcpy(vals, other.vals, sizeof(vals));
+    activeLo = other.activeLo;
+    activeHi = other.activeHi;
+    return *this;
   }
 
 
   int total_bugs() const {
     int bugs = 0;
     for (int level = activeLo; level <= activeHi; level++) {
-      for (int y = 0; y < kHeight; y++) {
-        for (int x = 0; x < kWidth; x++) {
-          if (x == 2 && y == 2) {
-            continue;
-          }
-          bugs += num_bugs(x, y, level);
-        }
-      }
+      bugs += __builtin_popcount(vals[level]);
     }
     return bugs;
   }
@@ -120,9 +49,6 @@ struct Grid {
     assert(x >= 0 && x < kWidth && y >= 0 && y < kHeight);
     assert(!(x == 2 && y == 2)); // Can't set the center tile, it's a proxy for the next level up.
 
-    if (x < 0 || x >= kWidth || y < 0 || y >= kHeight || level < 0 || level >= kNumLevels) {
-      return;
-    }
     uint32_t bit = 1u << (y * kWidth + x);
     if (cellval) {
       vals[level] |= bit;
@@ -134,21 +60,64 @@ struct Grid {
 
 
   bool update_level(const Grid& old, int level) {
-    assert(level >= 0 && level < kNumLevels);
+    assert(level > 0 && level < kNumLevels - 1);
 
-    vals[level] = 0u;
-    for (int y = 0; y < kHeight; y++) {
-      for (int x = 0; x < kWidth; x++) {
-        if (x == 2 && y == 2) {
-          continue;
-        }
-        bool hasBug = old.num_bugs(x, y, level) > 0;
-        int adjacentBugs = old.adjacent_bugs(x, y, level);
-        bool newHasBug = (hasBug && adjacentBugs == 1) ||
-                         (!hasBug && adjacentBugs >= 1 && adjacentBugs <= 2);
-        set(x, y, level, newHasBug);
+    const uint32_t outer   = old.vals[level - 1];
+    const uint32_t current = old.vals[level];
+    const uint32_t inner   = old.vals[level + 1];
+
+    const int outerLeft  = __builtin_popcount(outer & 0b00000'00000'00010'00000'00000);
+    const int outerRight = __builtin_popcount(outer & 0b00000'00000'01000'00000'00000);
+    const int outerUp    = __builtin_popcount(outer & 0b00000'00000'00000'00100'00000);
+    const int outerDown  = __builtin_popcount(outer & 0b00000'00100'00000'00000'00000);
+
+    const int innerLeftEdge   = __builtin_popcount(inner & 0b00001'00001'00001'00001'00001);
+    const int innerRightEdge  = __builtin_popcount(inner & 0b10000'10000'10000'10000'10000);
+    const int innerTopEdge    = __builtin_popcount(inner & 0b00000'00000'00000'00000'11111);
+    const int innerBottomEdge = __builtin_popcount(inner & 0b11111'00000'00000'00000'00000);
+
+    const int adjacent[25] = {
+      __builtin_popcount(current & 0b00000'00000'00000'00001'00010) + outerUp + outerLeft,
+      __builtin_popcount(current & 0b00000'00000'00000'00010'00101) + outerUp,
+      __builtin_popcount(current & 0b00000'00000'00000'00100'01010) + outerUp,
+      __builtin_popcount(current & 0b00000'00000'00000'01000'10100) + outerUp,
+      __builtin_popcount(current & 0b00000'00000'00000'10000'01000) + outerUp + outerRight,
+
+      __builtin_popcount(current & 0b00000'00000'00001'00010'00001) + outerLeft,
+      __builtin_popcount(current & 0b00000'00000'00010'00101'00010),
+      __builtin_popcount(current & 0b00000'00000'00000'01010'00100) + innerTopEdge,
+      __builtin_popcount(current & 0b00000'00000'01000'10100'01000),
+      __builtin_popcount(current & 0b00000'00000'10000'01000'10000) + outerRight,
+
+      __builtin_popcount(current & 0b00000'00001'00010'00001'00000) + outerLeft,
+      __builtin_popcount(current & 0b00000'00010'00001'00010'00000) + innerLeftEdge,
+      0,
+      __builtin_popcount(current & 0b00000'01000'10000'01000'00000) + innerRightEdge,
+      __builtin_popcount(current & 0b00000'10000'01000'10000'00000) + outerRight,
+
+      __builtin_popcount(current & 0b00001'00010'00001'00000'00000) + outerLeft,
+      __builtin_popcount(current & 0b00010'00101'00010'00000'00000),
+      __builtin_popcount(current & 0b00100'01010'00000'00000'00000) + innerBottomEdge,
+      __builtin_popcount(current & 0b01000'10100'01000'00000'00000),
+      __builtin_popcount(current & 0b10000'01000'10000'00000'00000) + outerRight,
+
+      __builtin_popcount(current & 0b00010'00001'00000'00000'00000) + outerDown + outerLeft,
+      __builtin_popcount(current & 0b00101'00010'00000'00000'00000) + outerDown,
+      __builtin_popcount(current & 0b01010'00100'00000'00000'00000) + outerDown,
+      __builtin_popcount(current & 0b10100'01000'00000'00000'00000) + outerDown,
+      __builtin_popcount(current & 0b01000'10000'00000'00000'00000) + outerDown + outerRight,
+    };
+
+    uint32_t newval = 0u;
+    for (int i = 0; i < 25; ++i) {
+      if (adjacent[i] == 1) {
+        newval |= (1u << i);
+      }
+      else if (adjacent[i] == 2) {
+        newval |= (~current & (1u << i));
       }
     }
+    vals[level] = newval;
     return vals[level] != 0u;
   }
 
@@ -179,7 +148,8 @@ struct Grid {
             fputc('?', stdout);
           }
           else {
-            fputc((num_bugs(x, y, level) > 0) ? '#' : '.', stdout);
+            uint32_t bit = 1u << (y * kWidth + x);
+            fputc(((vals[level] & bit) != 0) ? '#' : '.', stdout);
           }
         }
         fputc('\n', stdout);
@@ -213,16 +183,13 @@ int main(int argc, char** argv)
     y++;
   }
 
-//  grid[active].print();
-//  printf("There are %d bugs present\n", grid[active].total_bugs());
-
-  for (int i = 0; i < 200; i++) {
+  const int minutes = (strcmp(argv[1], "input.txt") == 0) ? 200 : 10;
+  for (int i = 1; i <= minutes; i++) {
     active ^= 1;
     grid[active].update(grid[active ^ 1]);
   }
 
 //  grid[active].print();
   printf("There are %d bugs present\n", grid[active].total_bugs());
-
   return 0;
 }
