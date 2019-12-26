@@ -1,0 +1,60 @@
+# At 0
+west
+# At D
+west
+# At E
+#take giant electromagnet
+north
+# At F
+take space heater
+south
+# At E
+east
+# At D
+south
+# At G
+take festive hat
+south
+# At I
+take sand
+north
+# At G
+east
+# At H
+take whirled peas
+west
+# At G
+north
+# At D
+east
+# At 0
+south
+# At J
+take weather machine
+north
+# At 0
+east
+# At 1
+take mug
+east
+# At 2
+south
+# At 3
+east
+# At 4
+south
+# At 5
+take easter egg
+north
+# At 4
+west
+# At 3
+west
+# At 8
+south
+# At 9
+west
+# At A
+take shell
+south
+# At B

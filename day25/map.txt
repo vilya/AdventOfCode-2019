@@ -1,0 +1,56 @@
+Hull Breach
+  east: Engineering (mug)
+    east: Sick Bay (escape pod)
+  south:  
+  west:
+
+
+F
+|   
+E-D-0-1-2 7-6
+  | |   |   |
+  | J   |   |
+  |     |   |
+  G-H 8-3---4
+  |   |     |
+  I A-9     5
+    |
+    B
+    |
+    C
+
+
+0: Hull Breach              ()
+1: Engineering              (mug -> ok)
+2: Sick Bay                 (escape pod -> game over)
+3: Crew Quarters            ()
+4: Hot Chocolate Fountain   (photons -> game over)
+5: Corridor                 (easter egg -> ok)
+6: Stables                  (molten lava -> game over)
+7: Kitchen                  ()
+8: Warp Drive Maintenance   ()
+9: Observatory              (infinite loop -> game over)
+A: Gift Wrapping Center     (shell -> ok)
+B: Security Checkpoint      ()
+C: Pressure-Sensitive Floor () -> need to be heavier than default weight
+D: Hallway                  ()
+E: Holodeck                 (giant electromagnet -> prevents movement)
+F: Passages                 (space heater -> ok)
+G: Navigation               (festive hat -> ok)
+H: Arcade                   (whirled peas -> ok)
+I: Storage                  (sand -> ok)
+J: Science Lab              (weather machine -> ok)
+
+
+Items to collect: 
+- mug
+- easter egg
+- shell
+- space heater
+- festive hat
+- whirled peas
+- sand
+- weather machine
+
+Notes:
+- can pick up and drop the giant electromagnet, but cannot move while holding it

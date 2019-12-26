@@ -1,0 +1,1273 @@
+# Combination 1
+drop easter egg
+drop shell
+drop space heater
+drop festive hat
+drop whirled peas
+drop sand
+drop weather machine
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 2
+drop mug
+take easter egg
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 3
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 4
+drop mug
+drop easter egg
+take shell
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 5
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 6
+drop mug
+take easter egg
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 7
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 8
+drop mug
+drop easter egg
+drop shell
+take space heater
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 9
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 10
+drop mug
+take easter egg
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 11
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 12
+drop mug
+drop easter egg
+take shell
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 13
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 14
+drop mug
+take easter egg
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 15
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 16
+drop mug
+drop easter egg
+drop shell
+drop space heater
+take festive hat
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 17
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 18
+drop mug
+take easter egg
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 19
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 20
+drop mug
+drop easter egg
+take shell
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 21
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 22
+drop mug
+take easter egg
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 23
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 24
+drop mug
+drop easter egg
+drop shell
+take space heater
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 25
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 26
+drop mug
+take easter egg
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 27
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 28
+drop mug
+drop easter egg
+take shell
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 29
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 30
+drop mug
+take easter egg
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 31
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 32
+drop mug
+drop easter egg
+drop shell
+drop space heater
+drop festive hat
+take whirled peas
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 33
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 34
+drop mug
+take easter egg
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 35
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 36
+drop mug
+drop easter egg
+take shell
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 37
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 38
+drop mug
+take easter egg
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 39
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 40
+drop mug
+drop easter egg
+drop shell
+take space heater
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 41
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 42
+drop mug
+take easter egg
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 43
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 44
+drop mug
+drop easter egg
+take shell
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 45
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 46
+drop mug
+take easter egg
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 47
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 48
+drop mug
+drop easter egg
+drop shell
+drop space heater
+take festive hat
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 49
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 50
+drop mug
+take easter egg
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 51
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 52
+drop mug
+drop easter egg
+take shell
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 53
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 54
+drop mug
+take easter egg
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 55
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 56
+drop mug
+drop easter egg
+drop shell
+take space heater
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 57
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 58
+drop mug
+take easter egg
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 59
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 60
+drop mug
+drop easter egg
+take shell
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 61
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 62
+drop mug
+take easter egg
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 63
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 64
+drop mug
+drop easter egg
+drop shell
+drop space heater
+drop festive hat
+drop whirled peas
+take sand
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 65
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 66
+drop mug
+take easter egg
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 67
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 68
+drop mug
+drop easter egg
+take shell
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 69
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 70
+drop mug
+take easter egg
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 71
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 72
+drop mug
+drop easter egg
+drop shell
+take space heater
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 73
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 74
+drop mug
+take easter egg
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 75
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 76
+drop mug
+drop easter egg
+take shell
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 77
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 78
+drop mug
+take easter egg
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 79
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 80
+drop mug
+drop easter egg
+drop shell
+drop space heater
+take festive hat
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 81
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 82
+drop mug
+take easter egg
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 83
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 84
+drop mug
+drop easter egg
+take shell
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 85
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 86
+drop mug
+take easter egg
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 87
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 88
+drop mug
+drop easter egg
+drop shell
+take space heater
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 89
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 90
+drop mug
+take easter egg
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 91
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 92
+drop mug
+drop easter egg
+take shell
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 93
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 94
+drop mug
+take easter egg
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 95
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 96
+drop mug
+drop easter egg
+drop shell
+drop space heater
+drop festive hat
+take whirled peas
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 97
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 98
+drop mug
+take easter egg
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 99
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 100
+drop mug
+drop easter egg
+take shell
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 101
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 102
+drop mug
+take easter egg
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 103
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 104
+drop mug
+drop easter egg
+drop shell
+take space heater
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 105
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 106
+drop mug
+take easter egg
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 107
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 108
+drop mug
+drop easter egg
+take shell
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 109
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 110
+drop mug
+take easter egg
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 111
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 112
+drop mug
+drop easter egg
+drop shell
+drop space heater
+take festive hat
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 113
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 114
+drop mug
+take easter egg
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 115
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 116
+drop mug
+drop easter egg
+take shell
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 117
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 118
+drop mug
+take easter egg
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 119
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 120
+drop mug
+drop easter egg
+drop shell
+take space heater
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 121
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 122
+drop mug
+take easter egg
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 123
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 124
+drop mug
+drop easter egg
+take shell
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 125
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 126
+drop mug
+take easter egg
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 127
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 128
+drop mug
+drop easter egg
+drop shell
+drop space heater
+drop festive hat
+drop whirled peas
+drop sand
+take weather machine
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 129
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 130
+drop mug
+take easter egg
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 131
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 132
+drop mug
+drop easter egg
+take shell
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 133
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 134
+drop mug
+take easter egg
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 135
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 136
+drop mug
+drop easter egg
+drop shell
+take space heater
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 137
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 138
+drop mug
+take easter egg
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 139
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 140
+drop mug
+drop easter egg
+take shell
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 141
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 142
+drop mug
+take easter egg
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 143
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 144
+drop mug
+drop easter egg
+drop shell
+drop space heater
+take festive hat
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 145
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 146
+drop mug
+take easter egg
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 147
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 148
+drop mug
+drop easter egg
+take shell
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 149
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 150
+drop mug
+take easter egg
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 151
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 152
+drop mug
+drop easter egg
+drop shell
+take space heater
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 153
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 154
+drop mug
+take easter egg
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 155
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 156
+drop mug
+drop easter egg
+take shell
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 157
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 158
+drop mug
+take easter egg
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 159
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 160
+drop mug
+drop easter egg
+drop shell
+drop space heater
+drop festive hat
+take whirled peas
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 161
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 162
+drop mug
+take easter egg
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 163
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 164
+drop mug
+drop easter egg
+take shell
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 165
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 166
+drop mug
+take easter egg
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 167
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 168
+drop mug
+drop easter egg
+drop shell
+take space heater
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 169
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 170
+drop mug
+take easter egg
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 171
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 172
+drop mug
+drop easter egg
+take shell
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 173
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 174
+drop mug
+take easter egg
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 175
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 176
+drop mug
+drop easter egg
+drop shell
+drop space heater
+take festive hat
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 177
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 178
+drop mug
+take easter egg
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 179
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 180
+drop mug
+drop easter egg
+take shell
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 181
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 182
+drop mug
+take easter egg
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 183
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 184
+drop mug
+drop easter egg
+drop shell
+take space heater
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 185
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 186
+drop mug
+take easter egg
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 187
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 188
+drop mug
+drop easter egg
+take shell
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 189
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 190
+drop mug
+take easter egg
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 191
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 192
+drop mug
+drop easter egg
+drop shell
+drop space heater
+drop festive hat
+drop whirled peas
+take sand
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 193
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 194
+drop mug
+take easter egg
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 195
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 196
+drop mug
+drop easter egg
+take shell
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 197
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 198
+drop mug
+take easter egg
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 199
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 200
+drop mug
+drop easter egg
+drop shell
+take space heater
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 201
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 202
+drop mug
+take easter egg
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 203
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 204
+drop mug
+drop easter egg
+take shell
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 205
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 206
+drop mug
+take easter egg
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 207
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 208
+drop mug
+drop easter egg
+drop shell
+drop space heater
+take festive hat
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 209
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 210
+drop mug
+take easter egg
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 211
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 212
+drop mug
+drop easter egg
+take shell
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 213
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 214
+drop mug
+take easter egg
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 215
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 216
+drop mug
+drop easter egg
+drop shell
+take space heater
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 217
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 218
+drop mug
+take easter egg
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 219
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 220
+drop mug
+drop easter egg
+take shell
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 221
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 222
+drop mug
+take easter egg
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 223
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 224
+drop mug
+drop easter egg
+drop shell
+drop space heater
+drop festive hat
+take whirled peas
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 225
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 226
+drop mug
+take easter egg
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 227
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 228
+drop mug
+drop easter egg
+take shell
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 229
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 230
+drop mug
+take easter egg
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 231
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 232
+drop mug
+drop easter egg
+drop shell
+take space heater
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 233
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 234
+drop mug
+take easter egg
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 235
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 236
+drop mug
+drop easter egg
+take shell
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 237
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 238
+drop mug
+take easter egg
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 239
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 240
+drop mug
+drop easter egg
+drop shell
+drop space heater
+take festive hat
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 241
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 242
+drop mug
+take easter egg
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 243
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 244
+drop mug
+drop easter egg
+take shell
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 245
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 246
+drop mug
+take easter egg
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 247
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 248
+drop mug
+drop easter egg
+drop shell
+take space heater
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 249
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 250
+drop mug
+take easter egg
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 251
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 252
+drop mug
+drop easter egg
+take shell
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 253
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 254
+drop mug
+take easter egg
+south
+# If we had the right weight we're at C now, otherwise at B
+# Combination 255
+take mug
+south
+# If we had the right weight we're at C now, otherwise at B
