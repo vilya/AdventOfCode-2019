@@ -53,3 +53,5 @@ add_executable(day23a day23/day23a.cpp)
 add_executable(day23b day23/day23b.cpp)
 add_executable(day24a day24/day24a.cpp)
 add_executable(day24b day24/day24b.cpp)
+
+add_executable(intcode-run intcode/intcode-run.cpp)
