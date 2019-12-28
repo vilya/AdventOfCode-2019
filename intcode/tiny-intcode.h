@@ -2,6 +2,10 @@
 #include <queue>
 #include <vector>
 
+#ifndef INTCODE_MEM_SIZE
+#define INTCODE_MEM_SIZE (128 * 1024)
+#endif
+
 namespace vh {
   
   static constexpr int64_t kModeDiv[] = { 10, 100, 1000, 10000 };
@@ -19,8 +23,8 @@ namespace vh {
       while (fscanf(f, "%lld,", &tmp) == 1)
         mem.push_back(tmp);
       fclose(f);
-      if (mem.size() < 128 * 1024)
-        mem.resize(128 * 1024, 0ll);
+      if (mem.size() < INTCODE_MEM_SIZE)
+        mem.resize(INTCODE_MEM_SIZE, 0ll);
       out.reserve(16);
       return true;
     }
