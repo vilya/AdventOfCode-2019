@@ -55,3 +55,4 @@ add_executable(day24a day24/day24a.cpp)
 add_executable(day24b day24/day24b.cpp)
 
 add_executable(intcode-run intcode/intcode-run.cpp)
+add_executable(intcode-benchmark intcode/benchmarks/intcode-benchmark.cpp)
