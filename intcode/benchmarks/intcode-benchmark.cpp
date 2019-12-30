@@ -1,4 +1,3 @@
-#define INTCODE_MEM_SIZE (1024 * 1024)
 #include <tiny-intcode.h>
 
 #include <chrono>

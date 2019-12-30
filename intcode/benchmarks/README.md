@@ -16,6 +16,7 @@ Benchmark Results
 | sum-of-primes | 100000000     | 279209790387276              |  21326.7 ms   |
 | ackermann     | 3,6           | 509                          |      8.4 ms   |
 | ackermann     | 4,1           | 65533                        | 131578.4 ms   |
+| ackermann     | 3,14          | 131069                       | 526883.3 ms   |
 | isqrt         | 130           | 11                           |      0.012 ms |
 | divmod        | 1024,3        | 341,1                        |      0.013 ms |
 | factor        | 19338240      | 2,2,2,2,2,2,2,2,2,2,3,5,1259 |      1.9 ms   |
