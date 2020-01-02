@@ -9,26 +9,6 @@
 
 namespace vh {
   
-  static constexpr uint8_t kModes_000[4] = { 0, 0, 0, 0 };
-  static constexpr uint8_t kModes_001[4] = { 0, 1, 0, 0 };
-  static constexpr uint8_t kModes_002[4] = { 0, 2, 0, 0 };
-  static constexpr uint8_t kModes_010[4] = { 0, 0, 1, 0 };
-  static constexpr uint8_t kModes_011[4] = { 0, 1, 1, 0 };
-  static constexpr uint8_t kModes_012[4] = { 0, 2, 1, 0 };
-  static constexpr uint8_t kModes_020[4] = { 0, 0, 2, 0 };
-  static constexpr uint8_t kModes_021[4] = { 0, 1, 2, 0 };
-  static constexpr uint8_t kModes_022[4] = { 0, 2, 2, 0 };
-  static constexpr uint8_t kModes_200[4] = { 0, 0, 0, 2 };
-  static constexpr uint8_t kModes_201[4] = { 0, 1, 0, 2 };
-  static constexpr uint8_t kModes_202[4] = { 0, 2, 0, 2 };
-  static constexpr uint8_t kModes_210[4] = { 0, 0, 1, 2 };
-  static constexpr uint8_t kModes_211[4] = { 0, 1, 1, 2 };
-  static constexpr uint8_t kModes_212[4] = { 0, 2, 1, 2 };
-  static constexpr uint8_t kModes_220[4] = { 0, 0, 2, 2 };
-  static constexpr uint8_t kModes_221[4] = { 0, 1, 2, 2 };
-  static constexpr uint8_t kModes_222[4] = { 0, 2, 2, 2 };
-
-
   struct IntcodeComputer {
     std::vector<int64_t> mem;
     std::vector<int64_t> out;
@@ -52,21 +32,37 @@ namespace vh {
       return true;
     }
 
-    int64_t peek(int64_t i) const {
-      int64_t addr;
-      switch (modes[i]) {
-        case 0: addr = mem[ip + i]; break;
-        case 1: addr = ip + i; break;
-        case 2: addr = mem[ip + i] + rel; break;
-      }
+    int64_t peek0(int64_t i) const {
+      int64_t addr = mem[ip + i];
       return (addr >= size) ? 0 : mem[addr];
     }
 
-    int64_t& poke(int64_t i) {
-      int64_t addr = mem[ip + i] + (modes[i] >> 1) * rel;
+    int64_t peek1(int64_t i) const {
+      int64_t addr = ip + i;
+      return (addr >= size) ? 0 : mem[addr];
+    }
+
+    int64_t peek2(int64_t i) const {
+      int64_t addr = mem[ip + i] + rel;
+      return (addr >= size) ? 0 : mem[addr];
+    }
+
+    int64_t& poke0(int64_t i) {
+      int64_t addr = mem[ip + i];
       if (addr >= size) {
         size = addr + INTCODE_MEM_SIZE;
         mem.resize(static_cast<size_t>(size), 0ll);
+        fprintf(stderr, "resize mem to %lld\n", size);
+      }
+      return mem[addr];
+    }
+
+    int64_t& poke2(int64_t i) {
+      int64_t addr = mem[ip + i] + rel;
+      if (addr >= size) {
+        size = addr + INTCODE_MEM_SIZE;
+        mem.resize(static_cast<size_t>(size), 0ll);
+        fprintf(stderr, "resize mem to %lld\n", size);
       }
       return mem[addr];
     }
@@ -76,38 +72,123 @@ namespace vh {
       out.clear();
       while (1) {
         int op = static_cast<int>(mem[ip]);
-        switch (op / 100) {
-          case   0: modes = kModes_000; break;
-          case   1: modes = kModes_001; break;
-          case   2: modes = kModes_002; break;
-          case  10: modes = kModes_010; break;
-          case  11: modes = kModes_011; break;
-          case  12: modes = kModes_012; break;
-          case  20: modes = kModes_020; break;
-          case  21: modes = kModes_021; break;
-          case  22: modes = kModes_022; break;
-          case 200: modes = kModes_200; break;
-          case 201: modes = kModes_201; break;
-          case 202: modes = kModes_202; break;
-          case 210: modes = kModes_210; break;
-          case 211: modes = kModes_211; break;
-          case 212: modes = kModes_212; break;
-          case 220: modes = kModes_220; break;
-          case 221: modes = kModes_221; break;
-          case 222: modes = kModes_222; break;
-          default: modes = nullptr; break;
-        }
+        switch (op) {
+          // variants of add
+          case     1: poke0(3) = peek0(1) + peek0(2); ip += 4; break;
+          case   101: poke0(3) = peek1(1) + peek0(2); ip += 4; break;
+          case   201: poke0(3) = peek2(1) + peek0(2); ip += 4; break;
+          case  1001: poke0(3) = peek0(1) + peek1(2); ip += 4; break;
+          case  1101: poke0(3) = peek1(1) + peek1(2); ip += 4; break;
+          case  1201: poke0(3) = peek2(1) + peek1(2); ip += 4; break;
+          case  2001: poke0(3) = peek0(1) + peek2(2); ip += 4; break;
+          case  2101: poke0(3) = peek1(1) + peek2(2); ip += 4; break;
+          case  2201: poke0(3) = peek2(1) + peek2(2); ip += 4; break;
+          case 20001: poke2(3) = peek0(1) + peek0(2); ip += 4; break;
+          case 20101: poke2(3) = peek1(1) + peek0(2); ip += 4; break;
+          case 20201: poke2(3) = peek2(1) + peek0(2); ip += 4; break;
+          case 21001: poke2(3) = peek0(1) + peek1(2); ip += 4; break;
+          case 21101: poke2(3) = peek1(1) + peek1(2); ip += 4; break;
+          case 21201: poke2(3) = peek2(1) + peek1(2); ip += 4; break;
+          case 22001: poke2(3) = peek0(1) + peek2(2); ip += 4; break;
+          case 22101: poke2(3) = peek1(1) + peek2(2); ip += 4; break;
+          case 22201: poke2(3) = peek2(1) + peek2(2); ip += 4; break;
 
-        switch (op % 100) {
-          case 1: poke(3) = peek(1) + peek(2); ip += 4; break; // add
-          case 2: poke(3) = peek(1) * peek(2); ip += 4; break; // mul
-          case 3: if (input.empty()) return 1; poke(1) = input.front(); input.pop_front(); ip += 2; break; // read
-          case 4: out.push_back(peek(1)); ip += 2; break; // write
-          case 5: ip = (peek(1) != 0) ? peek(2) : (ip + 3); break; // jump if true
-          case 6: ip = (peek(1) == 0) ? peek(2) : (ip + 3); break; // jump if false
-          case 7: poke(3) = (peek(1) <  peek(2)) ? 1 : 0; ip += 4; break; // less than
-          case 8: poke(3) = (peek(1) == peek(2)) ? 1 : 0; ip += 4; break; // equals
-          case 9: rel += peek(1); ip += 2; break; // set relative base
+          // variants of mul
+          case     2: poke0(3) = peek0(1) * peek0(2); ip += 4; break;
+          case   102: poke0(3) = peek1(1) * peek0(2); ip += 4; break;
+          case   202: poke0(3) = peek2(1) * peek0(2); ip += 4; break;
+          case  1002: poke0(3) = peek0(1) * peek1(2); ip += 4; break;
+          case  1102: poke0(3) = peek1(1) * peek1(2); ip += 4; break;
+          case  1202: poke0(3) = peek2(1) * peek1(2); ip += 4; break;
+          case  2002: poke0(3) = peek0(1) * peek2(2); ip += 4; break;
+          case  2102: poke0(3) = peek1(1) * peek2(2); ip += 4; break;
+          case  2202: poke0(3) = peek2(1) * peek2(2); ip += 4; break;
+          case 20002: poke2(3) = peek0(1) * peek0(2); ip += 4; break;
+          case 20102: poke2(3) = peek1(1) * peek0(2); ip += 4; break;
+          case 20202: poke2(3) = peek2(1) * peek0(2); ip += 4; break;
+          case 21002: poke2(3) = peek0(1) * peek1(2); ip += 4; break;
+          case 21102: poke2(3) = peek1(1) * peek1(2); ip += 4; break;
+          case 21202: poke2(3) = peek2(1) * peek1(2); ip += 4; break;
+          case 22002: poke2(3) = peek0(1) * peek2(2); ip += 4; break;
+          case 22102: poke2(3) = peek1(1) * peek2(2); ip += 4; break;
+          case 22202: poke2(3) = peek2(1) * peek2(2); ip += 4; break;
+
+          // variants of read
+          case   3: if (input.empty()) return 1; poke0(1) = input.front(); input.pop_front(); ip += 2; break;
+          case 203: if (input.empty()) return 1; poke2(1) = input.front(); input.pop_front(); ip += 2; break;
+
+          // variants of write
+          case   4: out.push_back(peek0(1)); ip += 2; break;
+          case 104: out.push_back(peek1(1)); ip += 2; break;
+          case 204: out.push_back(peek2(1)); ip += 2; break;
+
+          // variants of jump-if-true
+          case    5: ip = (peek0(1) != 0) ? peek0(2) : (ip + 3); break;
+          case  105: ip = (peek1(1) != 0) ? peek0(2) : (ip + 3); break;
+          case  205: ip = (peek2(1) != 0) ? peek0(2) : (ip + 3); break;
+          case 1005: ip = (peek0(1) != 0) ? peek1(2) : (ip + 3); break;
+          case 1105: ip = (peek1(1) != 0) ? peek1(2) : (ip + 3); break;
+          case 1205: ip = (peek2(1) != 0) ? peek1(2) : (ip + 3); break;
+          case 2005: ip = (peek0(1) != 0) ? peek2(2) : (ip + 3); break;
+          case 2105: ip = (peek1(1) != 0) ? peek2(2) : (ip + 3); break;
+          case 2205: ip = (peek2(1) != 0) ? peek2(2) : (ip + 3); break;
+
+          // variants of jump-if-false
+          case    6: ip = (peek0(1) == 0) ? peek0(2) : (ip + 3); break;
+          case  106: ip = (peek1(1) == 0) ? peek0(2) : (ip + 3); break;
+          case  206: ip = (peek2(1) == 0) ? peek0(2) : (ip + 3); break;
+          case 1006: ip = (peek0(1) == 0) ? peek1(2) : (ip + 3); break;
+          case 1106: ip = (peek1(1) == 0) ? peek1(2) : (ip + 3); break;
+          case 1206: ip = (peek2(1) == 0) ? peek1(2) : (ip + 3); break;
+          case 2006: ip = (peek0(1) == 0) ? peek2(2) : (ip + 3); break;
+          case 2106: ip = (peek1(1) == 0) ? peek2(2) : (ip + 3); break;
+          case 2206: ip = (peek2(1) == 0) ? peek2(2) : (ip + 3); break;
+
+          // variants of less-than
+          case     7: poke0(3) = (peek0(1) < peek0(2)) ? 1 : 0; ip += 4; break;
+          case   107: poke0(3) = (peek1(1) < peek0(2)) ? 1 : 0; ip += 4; break;
+          case   207: poke0(3) = (peek2(1) < peek0(2)) ? 1 : 0; ip += 4; break;
+          case  1007: poke0(3) = (peek0(1) < peek1(2)) ? 1 : 0; ip += 4; break;
+          case  1107: poke0(3) = (peek1(1) < peek1(2)) ? 1 : 0; ip += 4; break;
+          case  1207: poke0(3) = (peek2(1) < peek1(2)) ? 1 : 0; ip += 4; break;
+          case  2007: poke0(3) = (peek0(1) < peek2(2)) ? 1 : 0; ip += 4; break;
+          case  2107: poke0(3) = (peek1(1) < peek2(2)) ? 1 : 0; ip += 4; break;
+          case  2207: poke0(3) = (peek2(1) < peek2(2)) ? 1 : 0; ip += 4; break;
+          case 20007: poke2(3) = (peek0(1) < peek0(2)) ? 1 : 0; ip += 4; break;
+          case 20107: poke2(3) = (peek1(1) < peek0(2)) ? 1 : 0; ip += 4; break;
+          case 20207: poke2(3) = (peek2(1) < peek0(2)) ? 1 : 0; ip += 4; break;
+          case 21007: poke2(3) = (peek0(1) < peek1(2)) ? 1 : 0; ip += 4; break;
+          case 21107: poke2(3) = (peek1(1) < peek1(2)) ? 1 : 0; ip += 4; break;
+          case 21207: poke2(3) = (peek2(1) < peek1(2)) ? 1 : 0; ip += 4; break;
+          case 22007: poke2(3) = (peek0(1) < peek2(2)) ? 1 : 0; ip += 4; break;
+          case 22107: poke2(3) = (peek1(1) < peek2(2)) ? 1 : 0; ip += 4; break;
+          case 22207: poke2(3) = (peek2(1) < peek2(2)) ? 1 : 0; ip += 4; break;
+
+          // variants of equals
+          case     8: poke0(3) = (peek0(1) == peek0(2)) ? 1 : 0; ip += 4; break;
+          case   108: poke0(3) = (peek1(1) == peek0(2)) ? 1 : 0; ip += 4; break;
+          case   208: poke0(3) = (peek2(1) == peek0(2)) ? 1 : 0; ip += 4; break;
+          case  1008: poke0(3) = (peek0(1) == peek1(2)) ? 1 : 0; ip += 4; break;
+          case  1108: poke0(3) = (peek1(1) == peek1(2)) ? 1 : 0; ip += 4; break;
+          case  1208: poke0(3) = (peek2(1) == peek1(2)) ? 1 : 0; ip += 4; break;
+          case  2008: poke0(3) = (peek0(1) == peek2(2)) ? 1 : 0; ip += 4; break;
+          case  2108: poke0(3) = (peek1(1) == peek2(2)) ? 1 : 0; ip += 4; break;
+          case  2208: poke0(3) = (peek2(1) == peek2(2)) ? 1 : 0; ip += 4; break;
+          case 20008: poke2(3) = (peek0(1) == peek0(2)) ? 1 : 0; ip += 4; break;
+          case 20108: poke2(3) = (peek1(1) == peek0(2)) ? 1 : 0; ip += 4; break;
+          case 20208: poke2(3) = (peek2(1) == peek0(2)) ? 1 : 0; ip += 4; break;
+          case 21008: poke2(3) = (peek0(1) == peek1(2)) ? 1 : 0; ip += 4; break;
+          case 21108: poke2(3) = (peek1(1) == peek1(2)) ? 1 : 0; ip += 4; break;
+          case 21208: poke2(3) = (peek2(1) == peek1(2)) ? 1 : 0; ip += 4; break;
+          case 22008: poke2(3) = (peek0(1) == peek2(2)) ? 1 : 0; ip += 4; break;
+          case 22108: poke2(3) = (peek1(1) == peek2(2)) ? 1 : 0; ip += 4; break;
+          case 22208: poke2(3) = (peek2(1) == peek2(2)) ? 1 : 0; ip += 4; break;
+
+          // variants of set-relative-base
+          case   9: rel += peek0(1); ip += 2; break;
+          case 109: rel += peek1(1); ip += 2; break;
+          case 209: rel += peek2(1); ip += 2; break;
+
           default: return 0;
         }
       }
