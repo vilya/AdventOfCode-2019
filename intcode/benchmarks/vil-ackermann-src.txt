@@ -1,0 +1,87 @@
+# Run `python intcode-assemble.py vil-ackermann-src.txt > vil-ackerman.txt` to
+# assemble this into an executable intcode program.
+
+109,stack,                # set relative base to the start of the stack
+21101,finish,0,0,         # push return address onto the stack
+203,1,                    # read 'm' and push it onto the stack
+203,2,                    # read 'n' and push it onto the stack
+1105,1,funcA,             # goto function start
+finish:
+204,1,                    # output the return value of the function
+99,                       # halt
+
+# The A(m, n) function. This is equivalent to the following python code:
+#
+# """
+# def A(m, n):
+#   if m == 0:
+#     return n + 1
+#   elif m == 1:
+#     return n + 2
+#   elif m == 2:
+#     return 2 * n + 3
+#   elif n == 0:
+#     return A(m - 1, 1)
+#   else:
+#     return A(m - 1, A(m, n - 1))
+# """
+# 
+# The address that the function will return to is at mem[rel]
+# m is stored at mem[rel+1] 
+# n is stored at mem[rel+2]
+# mem[rel+3] is used as a temporary for the result of equality tests
+# Each stack frame consists of these 4 items in total.
+
+funcA:
+if_m_eq_0:
+  21208,1,0,3          # local0 = (m == 0)
+  1206,3,elif_m_eq_1   # if (!local0) goto elif_m_eq_1
+#  1206,3,elif_n_eq_0   # if (!local0) goto elif_n_eq_0
+  21201,2,1,1          # overwrite mem[rel+1] with the result, n + 1
+  2105,1,0             # return
+
+elif_m_eq_1:
+  21208,1,1,3          # local0 = (m == 1)
+  1206,3,elif_m_eq_2   # if (!local0) goto elif_m_eq_2
+  21201,2,2,1          # overwrite mem[rel+1] with the result, n + 2
+  2105,1,0             # return
+
+elif_m_eq_2:
+  21208,1,2,3          # local0 = (m == 2)
+  1206,3,elif_n_eq_0   # if (!local0) goto elif_n_eq_0
+  21202,2,2,1          # m = 2 * n
+  21201,1,3,1          # m += 3
+  2105,1,0             # return
+
+elif_n_eq_0:
+  21208,2,0,3          # local0 = (n == 0)
+  1206,3,else          # if (!local0) goto else
+  21101,return_a,0,4   # push the return address onto the stack
+  21201,1,-1,5         # push m-1 onto the stack
+  21101,1,0,6          # push 1 onto the stack
+  109,4                # stack += 4
+  1105,1,funcA         # jump to function start
+return_a:
+  109,-4,              # stack -= 4
+  21201,5,0,1          # overwrite mem[rel+1] with the result, A(m - 1, 1)
+  2105,1,0             # return
+
+else:
+  21101,return_b,0,4   # push the return address onto the stack
+  21201,1,0,5          # push m onto the stack
+  21201,2,-1,6         # push n-1 onto the stack
+  109,4                # stack += 4
+  1105,1,funcA         # jump to function start
+return_b:
+  109,-4               # stack -= 4
+  21201,5,0,6          # copy result of A(m,n-1) to the 'n' position for the next call
+  21101,return_c,0,4   # copy return address to onto the stack
+  21201,1,-1,5         # copy m - 1 into the 'm' position for the next call
+  109,4                # stack += 4
+  1105,1,funcA         # jump to function start
+return_c:
+  109,-4               # stack -= 4
+  21201,5,0,1          # overwrite mem[rel+1] with the result of A(m - 1, A(m, n - 1))
+  2105,1,0             # return
+
+stack:                 # start of the stack
