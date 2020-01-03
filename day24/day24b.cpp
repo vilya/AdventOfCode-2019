@@ -7,7 +7,7 @@
   #include <intrin.h>
   #define popcnt(x) static_cast<int>(__popcnt(x))
 #else
-  #define popcnt(x) __builtin_popcnt(x)
+  #define popcnt(x) __builtin_popcount(x)
 #endif
 
 constexpr int kWidth = 5;
