@@ -3,7 +3,13 @@
 #include <queue>
 #include <vector>
 
-#include <sys/mman.h>
+#ifdef _WIN32
+  #define NOMINMAX
+  #include <Windows.h>
+  #include <memoryapi.h>
+#else
+  #include <sys/mman.h>
+#endif
 
 namespace vh {
   
@@ -13,15 +19,22 @@ namespace vh {
     int64_t* mem;
     std::vector<int64_t> out;
     int64_t ip = 0, rel = 0;
-    const uint8_t* modes = nullptr;
 
     IntcodeComputer() {
+    #ifdef _WIN32
+      mem = reinterpret_cast<int64_t*>(VirtualAlloc(NULL, sizeof(int64_t) * kMemSize, MEM_COMMIT, PAGE_READWRITE));
+    #else
       mem = reinterpret_cast<int64_t*>(mmap(nullptr, kMemSize * sizeof(int64_t), PROT_READ | PROT_WRITE, MAP_ANON | MAP_PRIVATE | MAP_NORESERVE, -1, 0));
+    #endif
       out.reserve(16);
     }
 
     ~IntcodeComputer() {
+    #ifdef _WIN32
+      VirtualFree(mem, 0, MEM_RELEASE);
+    #else
       munmap(mem, kMemSize * sizeof(int64_t));
+    #endif
     }
 
     bool load(const char* filename) {
