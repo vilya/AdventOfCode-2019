@@ -3,6 +3,13 @@
 #include <cstdint>
 #include <cstring>
 
+#ifdef _WIN32
+  #include <intrin.h>
+  #define popcnt(x) static_cast<int>(__popcnt(x))
+#else
+  #define popcnt(x) __builtin_popcnt(x)
+#endif
+
 constexpr int kWidth = 5;
 constexpr int kHeight = 5;
 constexpr int kMaxDepth = 201;
@@ -38,7 +45,7 @@ struct Grid {
   int total_bugs() const {
     int bugs = 0;
     for (int level = activeLo; level <= activeHi; level++) {
-      bugs += __builtin_popcount(vals[level]);
+      bugs += popcnt(vals[level]);
     }
     return bugs;
   }
@@ -66,46 +73,46 @@ struct Grid {
     const uint32_t current = old.vals[level];
     const uint32_t inner   = old.vals[level + 1];
 
-    const int outerLeft  = __builtin_popcount(outer & 0b00000'00000'00010'00000'00000);
-    const int outerRight = __builtin_popcount(outer & 0b00000'00000'01000'00000'00000);
-    const int outerUp    = __builtin_popcount(outer & 0b00000'00000'00000'00100'00000);
-    const int outerDown  = __builtin_popcount(outer & 0b00000'00100'00000'00000'00000);
+    const int outerLeft  = popcnt(outer & 0b00000'00000'00010'00000'00000);
+    const int outerRight = popcnt(outer & 0b00000'00000'01000'00000'00000);
+    const int outerUp    = popcnt(outer & 0b00000'00000'00000'00100'00000);
+    const int outerDown  = popcnt(outer & 0b00000'00100'00000'00000'00000);
 
-    const int innerLeftEdge   = __builtin_popcount(inner & 0b00001'00001'00001'00001'00001);
-    const int innerRightEdge  = __builtin_popcount(inner & 0b10000'10000'10000'10000'10000);
-    const int innerTopEdge    = __builtin_popcount(inner & 0b00000'00000'00000'00000'11111);
-    const int innerBottomEdge = __builtin_popcount(inner & 0b11111'00000'00000'00000'00000);
+    const int innerLeftEdge   = popcnt(inner & 0b00001'00001'00001'00001'00001);
+    const int innerRightEdge  = popcnt(inner & 0b10000'10000'10000'10000'10000);
+    const int innerTopEdge    = popcnt(inner & 0b00000'00000'00000'00000'11111);
+    const int innerBottomEdge = popcnt(inner & 0b11111'00000'00000'00000'00000);
 
     const int adjacent[25] = {
-      __builtin_popcount(current & 0b00000'00000'00000'00001'00010) + outerUp + outerLeft,
-      __builtin_popcount(current & 0b00000'00000'00000'00010'00101) + outerUp,
-      __builtin_popcount(current & 0b00000'00000'00000'00100'01010) + outerUp,
-      __builtin_popcount(current & 0b00000'00000'00000'01000'10100) + outerUp,
-      __builtin_popcount(current & 0b00000'00000'00000'10000'01000) + outerUp + outerRight,
+      popcnt(current & 0b00000'00000'00000'00001'00010) + outerUp + outerLeft,
+      popcnt(current & 0b00000'00000'00000'00010'00101) + outerUp,
+      popcnt(current & 0b00000'00000'00000'00100'01010) + outerUp,
+      popcnt(current & 0b00000'00000'00000'01000'10100) + outerUp,
+      popcnt(current & 0b00000'00000'00000'10000'01000) + outerUp + outerRight,
 
-      __builtin_popcount(current & 0b00000'00000'00001'00010'00001) + outerLeft,
-      __builtin_popcount(current & 0b00000'00000'00010'00101'00010),
-      __builtin_popcount(current & 0b00000'00000'00000'01010'00100) + innerTopEdge,
-      __builtin_popcount(current & 0b00000'00000'01000'10100'01000),
-      __builtin_popcount(current & 0b00000'00000'10000'01000'10000) + outerRight,
+      popcnt(current & 0b00000'00000'00001'00010'00001) + outerLeft,
+      popcnt(current & 0b00000'00000'00010'00101'00010),
+      popcnt(current & 0b00000'00000'00000'01010'00100) + innerTopEdge,
+      popcnt(current & 0b00000'00000'01000'10100'01000),
+      popcnt(current & 0b00000'00000'10000'01000'10000) + outerRight,
 
-      __builtin_popcount(current & 0b00000'00001'00010'00001'00000) + outerLeft,
-      __builtin_popcount(current & 0b00000'00010'00001'00010'00000) + innerLeftEdge,
+      popcnt(current & 0b00000'00001'00010'00001'00000) + outerLeft,
+      popcnt(current & 0b00000'00010'00001'00010'00000) + innerLeftEdge,
       0,
-      __builtin_popcount(current & 0b00000'01000'10000'01000'00000) + innerRightEdge,
-      __builtin_popcount(current & 0b00000'10000'01000'10000'00000) + outerRight,
+      popcnt(current & 0b00000'01000'10000'01000'00000) + innerRightEdge,
+      popcnt(current & 0b00000'10000'01000'10000'00000) + outerRight,
 
-      __builtin_popcount(current & 0b00001'00010'00001'00000'00000) + outerLeft,
-      __builtin_popcount(current & 0b00010'00101'00010'00000'00000),
-      __builtin_popcount(current & 0b00100'01010'00000'00000'00000) + innerBottomEdge,
-      __builtin_popcount(current & 0b01000'10100'01000'00000'00000),
-      __builtin_popcount(current & 0b10000'01000'10000'00000'00000) + outerRight,
+      popcnt(current & 0b00001'00010'00001'00000'00000) + outerLeft,
+      popcnt(current & 0b00010'00101'00010'00000'00000),
+      popcnt(current & 0b00100'01010'00000'00000'00000) + innerBottomEdge,
+      popcnt(current & 0b01000'10100'01000'00000'00000),
+      popcnt(current & 0b10000'01000'10000'00000'00000) + outerRight,
 
-      __builtin_popcount(current & 0b00010'00001'00000'00000'00000) + outerDown + outerLeft,
-      __builtin_popcount(current & 0b00101'00010'00000'00000'00000) + outerDown,
-      __builtin_popcount(current & 0b01010'00100'00000'00000'00000) + outerDown,
-      __builtin_popcount(current & 0b10100'01000'00000'00000'00000) + outerDown,
-      __builtin_popcount(current & 0b01000'10000'00000'00000'00000) + outerDown + outerRight,
+      popcnt(current & 0b00010'00001'00000'00000'00000) + outerDown + outerLeft,
+      popcnt(current & 0b00101'00010'00000'00000'00000) + outerDown,
+      popcnt(current & 0b01010'00100'00000'00000'00000) + outerDown,
+      popcnt(current & 0b10100'01000'00000'00000'00000) + outerDown,
+      popcnt(current & 0b01000'10000'00000'00000'00000) + outerDown + outerRight,
     };
 
     uint32_t newval = 0u;
@@ -163,6 +170,11 @@ struct Grid {
 
 int main(int argc, char** argv)
 {
+  if (argc < 2) {
+    fprintf(stderr, "Usage: %s <input-file>\n", argv[0]);
+    return 1;
+  }
+
   FILE* f = fopen(argv[1], "r");
   if (!f) {
     fprintf(stderr, "Couldn't open %s\n", argv[1]);

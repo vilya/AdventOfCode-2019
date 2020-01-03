@@ -20,7 +20,7 @@ int main(int argc, char** argv)
   }
 
   std::vector<int> perm{ 5, 6, 7, 8, 9 };
-  int maxOutput = 0;
+  int64_t maxOutput = 0;
   do {
     vh::IntcodeComputer prog[5] = { src, src, src, src, src };
 
@@ -28,7 +28,7 @@ int main(int argc, char** argv)
       prog[i].run(perm[i]);
     }
 
-    int64_t status, amount = 0;
+    int64_t status = 0, amount = 0;
     do {
       for (size_t i = 0; i < 5; i++) {
         status = prog[i].run(amount);
@@ -41,6 +41,6 @@ int main(int argc, char** argv)
     }
   } while (std::next_permutation(perm.begin(), perm.end()));
 
-  printf("Max output = %d\n", maxOutput);
+  printf("Max output = %lld\n", maxOutput);
   return EXIT_SUCCESS;
 }

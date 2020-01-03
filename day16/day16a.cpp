@@ -40,6 +40,11 @@ void apply_pattern(const std::vector<int64_t>& in, std::vector<int64_t>& out)
 
 int main(int argc, char** argv)
 {
+  if (argc < 2) {
+    fprintf(stderr, "Usage: %s <input.txt>\n", argv[0]);
+    return 1;
+  }
+
   std::vector<int64_t> data[2];
   if (!load(argv[1], data[0])) {
     fprintf(stderr, "Failed to load %s\n", argv[1]);
@@ -56,7 +61,7 @@ int main(int argc, char** argv)
 
   size_t finalDst = ((numPhases - 1) ^ 1) & 1;
   for (size_t i = 0; i < 8; i++) {
-    fputc(data[finalDst][i] + '0', stdout);
+    fputc(static_cast<int>(data[finalDst][i] + '0'), stdout);
   }
   printf("\n");
 

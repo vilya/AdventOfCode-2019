@@ -68,8 +68,8 @@ static std::vector<int> find_list(const std::vector<int>& haystack, const std::v
   auto start = haystack.begin();
   auto pos = std::search(start, haystack.end(), needle.begin(), needle.end());
   while (pos != haystack.end()) {
-    found.push_back(std::distance(haystack.begin(), pos));
-    start += needle.size();
+    found.push_back(int(std::distance(haystack.begin(), pos)));
+    start += int64_t(needle.size());
     pos = std::search(start, haystack.end(), needle.begin(), needle.end());
   }
   return found;
@@ -95,7 +95,7 @@ static std::vector<int> replace_list(const std::vector<int>& haystack, const std
     replaced.insert(replaced.end(), newNeedle.begin(), newNeedle.end());
     start = i + n;
   }
-  if (start < haystack.size()) {
+  if (start < int(haystack.size())) {
     replaced.insert(replaced.end(), haystack.begin() + start, haystack.end());
   }
 
@@ -122,7 +122,7 @@ static std::vector<std::vector<int>> split_list(const std::vector<int>& src, con
     }
     start = i + n;
   }
-  if (start < src.size()) {
+  if (start < int(src.size())) {
     out.push_back(std::vector<int>(src.begin() + start, src.end()));
   }
   return out;

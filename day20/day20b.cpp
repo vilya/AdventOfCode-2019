@@ -73,7 +73,7 @@ struct Map {
 
     // Make sure all rows have the same length.
     for (std::string& row : grid) {
-      while (row.size() < size.x) {
+      while (int64_t(row.size()) < size.x) {
         row.push_back(' ');
       }
     }

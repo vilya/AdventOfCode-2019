@@ -45,7 +45,7 @@ bool load(const char* filename, std::vector<uint8_t>& out)
 
 void apply_pattern(const std::vector<uint8_t>& in, std::vector<uint8_t>& out)
 {
-  const size_t n = in.size();
+  const int n = static_cast<int>(in.size());
   assert(out.size() == n);
   int sum = 0;
   for (int i = n - 1; i >= 0; --i) {
@@ -57,6 +57,11 @@ void apply_pattern(const std::vector<uint8_t>& in, std::vector<uint8_t>& out)
 
 int main(int argc, char** argv)
 {
+  if (argc < 2) {
+    fprintf(stderr, "Usage: %s <input.txt>\n", argv[0]);
+    return 1;
+  }
+
   std::vector<uint8_t> data[2];
   if (!load(argv[1], data[0])) {
     fprintf(stderr, "Failed to load %s\n", argv[1]);
