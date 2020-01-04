@@ -17,39 +17,78 @@ namespace vh {
   static constexpr int64_t kDispatchTableSize = 22300;
 
 
+#ifdef _WIN32
+  void* alloc_virtual_mem(int64_t nbytes) {
+    return VirtualAlloc(NULL, sizeof(int64_t) * nbytes, MEM_COMMIT, PAGE_READWRITE);
+  }
+
+  void free_virtual_mem(void* mem, int64_t /*nbytes*/) {
+    VirtualFree(mem, 0, MEM_RELEASE);
+  }
+#else
+  void* alloc_virtual_mem(int64_t nbytes) {
+    return mmap(nullptr, sizeof(int64_t) * nbytes, PROT_READ | PROT_WRITE, MAP_ANON | MAP_PRIVATE | MAP_NORESERVE, -1, 0);
+  }
+
+  void free_virtual_mem(void* mem, int64_t nbytes) {
+    munmap(mem, sizeof(int64_t) * nbytes);
+  }
+#endif
+
+
   struct IntcodeComputer {
     int64_t* mem;
     std::vector<int64_t> out;
-    int64_t ip = 0, rel = 0;
+    int64_t ip = 0, rel = 0, size = 0;
 
     IntcodeComputer() {
-    #ifdef _WIN32
-      mem = reinterpret_cast<int64_t*>(VirtualAlloc(NULL, sizeof(int64_t) * kMemSize, MEM_COMMIT, PAGE_READWRITE));
-    #else
-      mem = reinterpret_cast<int64_t*>(mmap(nullptr, kMemSize * sizeof(int64_t), PROT_READ | PROT_WRITE, MAP_ANON | MAP_PRIVATE | MAP_NORESERVE, -1, 0));
-    #endif
+      mem = reinterpret_cast<int64_t*>(alloc_virtual_mem(sizeof(int64_t) * kMemSize));
       out.reserve(16);
-
       // Run a trivial program so that the dispatch table gets initialised.
       mem[0] = 99;
       run();
     }
 
+    IntcodeComputer(const IntcodeComputer& other) : mem(nullptr), out(other.out), ip(other.ip), rel(other.rel), size(other.size) {
+      mem = reinterpret_cast<int64_t*>(alloc_virtual_mem(sizeof(int64_t) * kMemSize));
+      std::memcpy(mem, other.mem, sizeof(int64_t) * size);
+    }
+
+    IntcodeComputer(IntcodeComputer&& other) : mem(other.mem), out(std::move(other.out)), ip(other.ip), rel(other.rel), size(other.size) {
+      other.mem = nullptr;
+    }
+
     ~IntcodeComputer() {
-    #ifdef _WIN32
-      VirtualFree(mem, 0, MEM_RELEASE);
-    #else
-      munmap(mem, kMemSize * sizeof(int64_t));
-    #endif
+      if (mem)
+        free_virtual_mem(mem, sizeof(int64_t) * kMemSize);
+    }
+
+    IntcodeComputer& operator = (const IntcodeComputer& other) {
+      mem = reinterpret_cast<int64_t*>(alloc_virtual_mem(sizeof(int64_t) * kMemSize));
+      out = other.out;
+      ip = other.ip;
+      rel = other.rel;
+      size = other.size;
+      return *this;
+    }
+
+    IntcodeComputer& operator = (IntcodeComputer&& other) {
+      mem = other.mem;
+      out = std::move(other.out);
+      ip = other.ip;
+      rel = other.rel;
+      size = other.size;
+      other.mem = nullptr;
+      return *this;
     }
 
     bool load(const char* filename) {
       FILE* f = fopen(filename, "r");
       if (f == nullptr)
         return false;
-      int64_t tmp, i = 0;
+      int64_t tmp;
       while (fscanf(f, "%lld,", &tmp) == 1)
-        mem[i++] = tmp;
+        mem[size++] = tmp;
       fclose(f);
       return true;
     }
