@@ -65,6 +65,7 @@ namespace vh {
 
     IntcodeComputer& operator = (const IntcodeComputer& other) {
       mem = reinterpret_cast<int64_t*>(alloc_virtual_mem(sizeof(int64_t) * kMemSize));
+      std::memcpy(mem, other.mem, sizeof(int64_t) * size);
       out = other.out;
       ip = other.ip;
       rel = other.rel;
